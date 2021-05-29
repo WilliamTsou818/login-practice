@@ -1,6 +1,9 @@
+
 const express = require('express')
 const app = express()
 const port = 3000
+
+const Account = require('./models/accounts')
 
 const exphbs = require('express-handlebars')
 
@@ -30,8 +33,25 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  const {email, password} = req.body
-  
+  return Account.find({email : req.body.email, password : req.body.password})
+  .lean()
+  .then(data => {
+    if (data.length > 0) {
+      res.redirect(`/welcome/${data[0]._id}`)
+    } else {
+      const alert = 'You might input the wrong email or password'
+      res.render('index', { alert })
+    }
+  })
+})
+
+app.get('/welcome/:id', (req, res) => {
+  const id = req.params.id
+  return Account.findById(id)
+    .lean()
+    .then(user => {
+      res.render('welcome', {user})
+    })
 })
 
 app.listen(port, () => {

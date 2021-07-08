@@ -29,7 +29,7 @@ app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('login')
 })
 
 app.post('/', (req, res) => {
@@ -40,7 +40,7 @@ app.post('/', (req, res) => {
       res.redirect(`/welcome/${data[0]._id}`)
     } else {
       const alert = 'You might input the wrong email or password'
-      res.render('index', { alert })
+      res.render('login', { alert })
     }
   })
 })

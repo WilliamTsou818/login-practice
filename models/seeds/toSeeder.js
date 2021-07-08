@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const db = require('../../config/mongoose')
 const Account = require('../accounts')
 const users = [
   {
@@ -28,24 +28,12 @@ const users = [
   }
 ]
 
-mongoose.connect('mongodb://localhost/account', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-
-const db = mongoose.connection
-
-db.on('error', () => {
-  console.log('mongoDB error!')
-})
-
 db.once('open', () => {
-  console.log('mongoDB connected!')
   users.forEach(user => {
     Account.create({
-      firstName : user.firstName,
-      email : user.email,
-      password : user.password
+      firstName: user.firstName,
+      email: user.email,
+      password: user.password
     })
   })
   console.log('done!')

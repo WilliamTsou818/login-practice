@@ -4,6 +4,9 @@ const passport = require('passport')
 const router = express.Router()
 
 router.get('/', (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect(`/welcome/${req.user._id}`)
+  }
   return res.redirect('/login')
 })
 

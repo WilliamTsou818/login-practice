@@ -57,18 +57,22 @@ git clone https://github.com/WilliamTsou818/login-practice.git
 ```
 cd login-practice
 ```
-3. 安裝套件
+3. 切換分支
+```
+git checkout A11
+```
+4. 安裝套件
 ```
 npm install
 ```
-4. 加入種子資料
+5. 加入種子資料
 ```
 npm run seed
 ```
-5. 啟動網頁伺服器
+6. 啟動網頁伺服器
 ```
 npm run dev
 ```
-6. 出現下列訊息，表示啟動成功，可點選連結開啟網頁
+7. 出現下列訊息，表示啟動成功，可點選連結開啟網頁
 
 Server is running on http://localhost:3000
